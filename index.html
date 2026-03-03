@@ -1,30 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>TaskVault - Login</title>
-
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <title>TaskVault Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="card">
-            <h1>TaskVault</h1>
-            <p class="subtitle">Secure Multi-User Task Management</p>
-
-            <form>
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-
-            <p class="footer-text">Admin users can access system-wide task visibility.</p>
-        </div>
+<div class="container">
+    <div class="card">
+        <button id="themeToggle" class="theme-inside">🌙</button>
+        <h1>TaskVault</h1>
+        <p class="subtitle">Secure Multi-User Task Management</p>
+        <form>
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
     </div>
+</div>
 
+<script src="assets/script.js"></script>
 </body>
 </html>

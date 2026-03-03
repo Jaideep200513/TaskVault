@@ -1,72 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>TaskVault - Dashboard</title>
-
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <title>TaskVault Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="dashboard-wrapper">
+<div class="dashboard-wrapper">
 
-        <!-- Header -->
-        <header class="dashboard-header">
-            <h2>TaskVault</h2>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <h2>TaskVault</h2>
+        <div class="header-actions">
+            <button id="themeToggle" class="theme-btn">🌙</button>
             <button class="logout-btn">Logout</button>
-        </header>
+        </div>
+    </header>
 
-        <!-- Add Task Section -->
-        <section class="add-task-section">
-            <input type="text" placeholder="Enter new task..." />
-            <input type="date" />
-            <input type="time" />
-            <button>Add Task</button>
-        </section>
+    <!-- Add Task Section -->
+    <section class="add-task-section">
+        <input type="text" placeholder="Enter new task...">
+        <input type="date">
+        <input type="time">
+        <button>Add Task</button>
+    </section>
 
-        <!-- Active Tasks -->
-        <section class="tasks-section">
-            <h3>Active Tasks</h3>
+    <!-- Active Tasks -->
+    <section class="tasks-section">
+        <h3>Active Tasks</h3>
 
-            <div class="task-item">
-                <div class="task-left">
-                    <span class="task-title">Complete Web Tech Assignment</span>
-                    <span class="deadline green">Due: Mar 10, 5:00 PM</span>
-                </div>
-
-                <div class="task-actions">
-                    <button class="complete-btn">Complete</button>
-                    <button class="delete-btn">Delete</button>
-                </div>
+        <div class="task-item">
+            <div>
+                <div class="task-title">Complete Web Tech Assignment</div>
+                <div class="deadline green">Due: Mar 12, 5:00 PM</div>
             </div>
-
-            <div class="task-item">
-                <span>Prepare for AWS Certification</span>
-                <div class="task-actions">
-                    <button class="complete-btn">Complete</button>
-                    <button class="delete-btn">Delete</button>
-                </div>
+            <div class="task-actions">
+                <button class="complete-btn">Complete</button>
+                <button class="delete-btn">Delete</button>
             </div>
+        </div>
 
-        </section>
-
-        <!-- Completed Tasks -->
-        <section class="tasks-section completed-section">
-            <h3>Completed Tasks</h3>
-
-            <div class="task-item completed">
-                <span>Set up Git Repository</span>
-                <div class="task-actions">
-                    <button class="delete-btn">Delete</button>
-                </div>
+        <div class="task-item">
+            <div>
+                <div class="task-title">Prepare for AWS Certification</div>
+                <div class="deadline yellow">Due: Tomorrow, 10:00 AM</div>
             </div>
+            <div class="task-actions">
+                <button class="complete-btn">Complete</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+        </div>
 
-        </section>
+        <div class="task-item">
+            <div>
+                <div class="task-title">Submit Internship Report</div>
+                <div class="deadline red">Overdue</div>
+            </div>
+            <div class="task-actions">
+                <button class="complete-btn">Complete</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+        </div>
 
-    </div>
+    </section>
 
+    <!-- Completed Tasks -->
+    <section class="tasks-section">
+        <h3>Completed Tasks</h3>
+
+        <div class="task-item">
+            <div>
+                <div class="task-title" style="text-decoration: line-through;">
+                    Set up Git Repository
+                </div>
+                <div class="deadline green">Completed</div>
+            </div>
+            <div class="task-actions">
+                <button class="delete-btn">Delete</button>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<script src="assets/script.js"></script>
 </body>
 </html>

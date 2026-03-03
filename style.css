@@ -1,3 +1,31 @@
+/* ================= THEME VARIABLES ================= */
+
+:root {
+    /* LIGHT MODE */
+    --bg-color: #E7EFC7;
+    --card-color: #ffffff;
+    --heading-color: #3B3B1A;
+    --text-color: #3B3B1A;
+    --muted-text: #6b6b6b;
+    --border-color: #AEC8A4;
+    --primary-button: #3B3B1A;
+    --primary-hover: #8A784E;
+}
+
+body.dark {
+    /* KEEPING YOUR DARK MODE (unchanged structure) */
+    --bg-color: #1B211A;
+    --card-color: #2A3328;
+    --heading-color: #EBD5AB;
+    --text-color: #EBD5AB;
+    --muted-text: #8BAE66;
+    --border-color: #3E4A38;
+    --primary-button: #8BAE66;
+    --primary-hover: #628141;
+}
+
+/* ================= GLOBAL ================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,103 +33,117 @@
     font-family: "Inter", sans-serif;
 }
 
-/* Background */
 body {
-    height: 100vh;
-    background: #E7EFC7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: all 0.3s ease;
 }
 
-/* Container */
+/* ================= LOGIN ================= */
+
 .container {
-    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Card */
 .card {
-    background: #ffffff;
+    position: relative;
+    background: var(--card-color);
     padding: 50px 40px;
     width: 380px;
     border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(59, 59, 26, 0.08);
-    text-align: left;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* Heading */
 .card h1 {
+    color: var(--heading-color);
     font-size: 28px;
     font-weight: 700;
-    color: #3B3B1A;
     margin-bottom: 8px;
 }
 
-/* Subtitle */
 .subtitle {
+    color: var(--muted-text);
     margin-bottom: 30px;
     font-size: 14px;
-    font-weight: 400;
-    color: #555;
 }
 
-/* Form Layout */
 form {
     display: flex;
     flex-direction: column;
 }
 
-/* Inputs */
 form input {
+    height: 48px;
     margin-bottom: 18px;
-    padding: 14px;
+    padding: 0 14px;
     border-radius: 12px;
-    border: 1px solid #AEC8A4;
-    font-size: 14px;
-    font-weight: 400;
-    transition: 0.2s ease;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
 }
 
 form input:focus {
     outline: none;
-    border-color: #3B3B1A;
+    border-color: var(--primary-button);
 }
 
-/* Button */
 form button {
-    padding: 14px;
+    height: 48px;
     border-radius: 12px;
     border: none;
-    background: #3B3B1A;
-    color: white;
+    background: var(--primary-button);
+    color: #ffffff;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 form button:hover {
-    background: #8A784E;
+    background: var(--primary-hover);
 }
 
-/* Footer Text */
-.footer-text {
-    margin-top: 25px;
-    font-size: 12px;
-    font-weight: 400;
-    color: #555;
+.theme-inside {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+
+    background: transparent;
+    color: var(--text-color);
+
+    cursor: pointer;
+    font-size: 15px;
+
+    transition: all 0.25s ease;
 }
+
+.theme-inside:hover {
+    border-color: var(--primary-button);
+    color: var(--primary-button);
+}
+
 
 /* ================= DASHBOARD ================= */
 
 .dashboard-wrapper {
-    width: 800px;
+    width: 850px;
     margin: 60px auto;
 }
 
-/* Header */
 .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -110,133 +152,118 @@ form button:hover {
 }
 
 .dashboard-header h2 {
-    font-size: 26px;
+    color: var(--heading-color);
     font-weight: 700;
-    color: #3B3B1A;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* ===== Circular Theme Button (Both Pages) ===== */
+
+.theme-btn,
+.theme-inside {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+
+    background: transparent;
+    color: var(--text-color);
+
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.theme-btn:hover,
+.theme-inside:hover {
+    border-color: var(--primary-button);
+    color: var(--primary-button);
 }
 
 .logout-btn {
     padding: 10px 18px;
     border-radius: 10px;
     border: none;
-    background: #3B3B1A;
+    background: var(--primary-button);
     color: white;
-    font-weight: 500;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .logout-btn:hover {
-    background: #8A784E;
+    background: var(--primary-hover);
 }
 
-/* Add Task Section */
+/* Add Task */
+
 .add-task-section {
     display: flex;
     gap: 15px;
     margin-bottom: 40px;
+    align-items: center;
 }
 
 .add-task-section input {
-    flex: 1;
-    padding: 14px;
+    height: 48px;
+    padding: 0 14px;
     border-radius: 12px;
-    border: 1px solid #AEC8A4;
-    font-size: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--card-color);
+    color: var(--text-color);
 }
 
-.add-task-section input:focus {
-    outline: none;
-    border-color: #3B3B1A;
+.add-task-section input[type="text"] {
+    flex: 2;
+}
+
+.add-task-section input[type="date"],
+.add-task-section input[type="time"] {
+    flex: 1;
 }
 
 .add-task-section button {
-    padding: 14px 22px;
+    height: 48px;
+    padding: 0 22px;
     border-radius: 12px;
     border: none;
-    background: #3B3B1A;
+    background: var(--primary-button);
     color: white;
-    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .add-task-section button:hover {
-    background: #8A784E;
+    background: var(--primary-hover);
 }
 
-/* Task Sections */
+/* Tasks */
+
 .tasks-section {
     margin-bottom: 40px;
 }
 
 .tasks-section h3 {
+    color: var(--heading-color);
     margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #3B3B1A;
 }
 
-/* Task Item */
 .task-item {
-    background: white;
+    background: var(--card-color);
     padding: 18px;
     border-radius: 14px;
-    border: 1px solid #AEC8A4;
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    transition: 0.2s ease;
-}
-
-.task-item:hover {
-    box-shadow: 0 8px 20px rgba(59, 59, 26, 0.08);
-}
-
-.task-item span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-}
-
-/* Completed Task */
-.task-item.completed span {
-    text-decoration: line-through;
-    color: #8A784E;
-}
-
-/* Task Actions */
-.task-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.complete-btn {
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: none;
-    background: #AEC8A4;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.delete-btn {
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: none;
-    background: #8A784E;
-    color: white;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-/* Deadline Styling */
-.task-left {
-    display: flex;
-    flex-direction: column;
 }
 
 .task-title {
@@ -249,21 +276,41 @@ form button:hover {
     padding: 4px 10px;
     border-radius: 20px;
     width: fit-content;
-    font-weight: 500;
 }
 
-/* Deadline Colors */
 .deadline.green {
-    background: #d4edda;
-    color: #155724;
+    background: #AEC8A4;
+    color: #1B211A;
 }
 
 .deadline.yellow {
-    background: #fff3cd;
-    color: #856404;
+    background: #EBD5AB;
+    color: #1B211A;
 }
 
 .deadline.red {
-    background: #f8d7da;
-    color: #721c24;
+    background: #b94a48;
+    color: white;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.complete-btn {
+    background: #AEC8A4;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #8A784E;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
