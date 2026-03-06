@@ -314,3 +314,62 @@ form button:hover {
     border-radius: 8px;
     cursor: pointer;
 }
+
+/* ================= TASK ACTION BUTTONS ================= */
+
+.task-actions button{
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+/* Edit */
+
+.edit-btn{
+    background:#AEC8A4;
+    color:#1B211A;
+}
+
+.edit-btn:hover{
+    background:#8A784E;
+    color:white;
+}
+
+/* Complete */
+
+.complete-btn{
+    background:#8BAE66;
+    color:#1B211A;
+}
+
+.complete-btn:hover{
+    background:#628141;
+    color:white;
+}
+
+/* Undo */
+
+.undo-btn{
+    background:#EBD5AB;
+    color:#3B3B1A;
+}
+
+.undo-btn:hover{
+    background:#8A784E;
+    color:white;
+}
+
+/* Delete */
+
+.delete-btn{
+    background:#8A784E;
+    color:white;
+}
+
+.delete-btn:hover{
+    background:#3B3B1A;
+}

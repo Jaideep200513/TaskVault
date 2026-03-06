@@ -20,67 +20,22 @@
 
     <!-- Add Task Section -->
     <section class="add-task-section">
-        <input type="text" placeholder="Enter new task...">
-        <input type="date">
-        <input type="time">
-        <button>Add Task</button>
+        <input id="taskInput" type="text" placeholder="Enter new task...">
+        <input id="dateInput" type="date">
+        <input id="timeInput" type="time">
+        <button id="addTaskBtn">Add Task</button>
     </section>
 
     <!-- Active Tasks -->
     <section class="tasks-section">
         <h3>Active Tasks</h3>
-
-        <div class="task-item">
-            <div>
-                <div class="task-title">Complete Web Tech Assignment</div>
-                <div class="deadline green">Due: Mar 12, 5:00 PM</div>
-            </div>
-            <div class="task-actions">
-                <button class="complete-btn">Complete</button>
-                <button class="delete-btn">Delete</button>
-            </div>
-        </div>
-
-        <div class="task-item">
-            <div>
-                <div class="task-title">Prepare for AWS Certification</div>
-                <div class="deadline yellow">Due: Tomorrow, 10:00 AM</div>
-            </div>
-            <div class="task-actions">
-                <button class="complete-btn">Complete</button>
-                <button class="delete-btn">Delete</button>
-            </div>
-        </div>
-
-        <div class="task-item">
-            <div>
-                <div class="task-title">Submit Internship Report</div>
-                <div class="deadline red">Overdue</div>
-            </div>
-            <div class="task-actions">
-                <button class="complete-btn">Complete</button>
-                <button class="delete-btn">Delete</button>
-            </div>
-        </div>
-
+        <div id="activeTasks"></div>
     </section>
 
     <!-- Completed Tasks -->
     <section class="tasks-section">
         <h3>Completed Tasks</h3>
-
-        <div class="task-item">
-            <div>
-                <div class="task-title" style="text-decoration: line-through;">
-                    Set up Git Repository
-                </div>
-                <div class="deadline green">Completed</div>
-            </div>
-            <div class="task-actions">
-                <button class="delete-btn">Delete</button>
-            </div>
-        </div>
-
+        <div id="completedTasks"></div>
     </section>
 
 </div>
