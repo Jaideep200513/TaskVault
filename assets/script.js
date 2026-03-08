@@ -33,6 +33,10 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 const activeTasks = document.getElementById("activeTasks");
 const completedTasks = document.getElementById("completedTasks");
 
+// Prevent selecting past dates
+const today = new Date().toISOString().split("T")[0];
+dateInput.setAttribute("min", today);
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 
@@ -80,7 +84,15 @@ function createTaskElement(task, index) {
         deadline.classList.add("red");
     }
 
-    deadline.textContent = `Due: ${task.date} ${task.time}`;
+    const formattedDate = new Date(`${task.date}T${task.time}`)
+    .toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+    });
+
+    deadline.textContent = `Due: ${formattedDate}`;
 
     leftDiv.appendChild(title);
     leftDiv.appendChild(deadline);
@@ -194,6 +206,13 @@ function renderTasks() {
 
     activeTasks.innerHTML = "";
     completedTasks.innerHTML = "";
+
+    // Sort tasks by deadline
+    tasks.sort((a, b) => {
+        const dateA = new Date(`${a.date}T${a.time}`);
+        const dateB = new Date(`${b.date}T${b.time}`);
+        return dateA - dateB;
+    });
 
     tasks.forEach((task, index) => {
 
