@@ -1,25 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TaskVault Login</title>
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
 
 <div class="container">
+
     <div class="card">
+
+        <!-- Theme Toggle -->
         <button id="themeToggle" class="theme-inside">🌙</button>
+
+        <!-- Title -->
         <h1>TaskVault</h1>
-        <p class="subtitle">Secure Multi-User Task Management</p>
-        <form>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button type="submit">Login</button>
+
+        <p class="subtitle">
+            Secure Multi-User Task Management
+        </p>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
         </form>
+
     </div>
+
 </div>
 
+
+<script>
+
+    // Temporary login handler (for testing)
+
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        // Redirect to dashboard
+        window.location.href = "dashboard.html";
+
+    });
+
+</script>
+
+
+<!-- Main Script -->
 <script src="assets/script.js"></script>
+
+
 </body>
 </html>

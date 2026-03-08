@@ -2,9 +2,14 @@
 <html>
 <head>
     <title>TaskVault Dashboard</title>
+
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="dashboard-wrapper">
@@ -12,34 +17,117 @@
     <!-- Header -->
     <header class="dashboard-header">
         <h2>TaskVault</h2>
+
         <div class="header-actions">
             <button id="themeToggle" class="theme-btn">🌙</button>
             <button class="logout-btn">Logout</button>
         </div>
     </header>
 
+
+    <!-- Task Statistics -->
+    <section class="task-stats">
+
+        <div class="stat-box">
+            <span id="activeCount">0</span>
+            <p>Active Tasks</p>
+        </div>
+
+        <div class="stat-box">
+            <span id="completedCount">0</span>
+            <p>Completed</p>
+        </div>
+
+    </section>
+
+
+    <!-- Search + Filter Section -->
+    <section class="search-task-section">
+
+        <div class="search-filter-wrapper">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search tasks..."
+            >
+
+            <button id="filterBtn" class="filter-btn">
+                Filter
+            </button>
+
+            <select id="filterSelect" class="filter-select">
+                <option value="all">All Tasks</option>
+                <option value="priority-high">High Priority</option>
+                <option value="priority-medium">Medium Priority</option>
+                <option value="priority-low">Low Priority</option>
+                <option value="deadline-soon">Deadline Soon</option>
+            </select>
+
+        </div>
+
+    </section>
+
+
     <!-- Add Task Section -->
     <section class="add-task-section">
-        <input id="taskInput" type="text" placeholder="Enter new task...">
-        <input id="dateInput" type="date">
-        <input id="timeInput" type="time">
+
+        <!-- Task Name -->
+        <input
+            id="taskInput"
+            type="text"
+            placeholder="Enter new task..."
+        >
+
+        <!-- Priority -->
+        <select id="priorityInput">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <!-- Date -->
+        <input
+            id="dateInput"
+            type="date"
+        >
+
+        <!-- Time -->
+        <input
+            id="timeInput"
+            type="time"
+        >
+
+        <!-- Add Button -->
         <button id="addTaskBtn">Add Task</button>
+
     </section>
+
 
     <!-- Active Tasks -->
     <section class="tasks-section">
+
         <h3>Active Tasks</h3>
+
         <div id="activeTasks"></div>
+
     </section>
+
 
     <!-- Completed Tasks -->
     <section class="tasks-section">
+
         <h3>Completed Tasks</h3>
+
         <div id="completedTasks"></div>
+
     </section>
+
 
 </div>
 
+<!-- Script -->
 <script src="assets/script.js"></script>
+
 </body>
 </html>

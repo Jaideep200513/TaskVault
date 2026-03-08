@@ -20,22 +20,35 @@ toggleButtons.forEach(btn => {
             btn.textContent = "🌙";
         }
     });
+
 });
 
 
-// ================= TASK SYSTEM =================
+// ================= ELEMENT REFERENCES =================
 
 const taskInput = document.getElementById("taskInput");
+const priorityInput = document.getElementById("priorityInput");
 const dateInput = document.getElementById("dateInput");
 const timeInput = document.getElementById("timeInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 
+const searchInput = document.getElementById("searchInput");
+const filterSelect = document.getElementById("filterSelect");
+
 const activeTasks = document.getElementById("activeTasks");
 const completedTasks = document.getElementById("completedTasks");
 
-// Prevent selecting past dates
+const activeCount = document.getElementById("activeCount");
+const completedCount = document.getElementById("completedCount");
+
+
+// ================= DATE LIMIT =================
+
 const today = new Date().toISOString().split("T")[0];
 dateInput.setAttribute("min", today);
+
+
+// ================= LOAD TASKS =================
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -57,6 +70,7 @@ function createTaskElement(task, index) {
     const leftDiv = document.createElement("div");
     leftDiv.className = "task-left";
 
+    // Task Title
     const title = document.createElement("div");
     title.className = "task-title";
     title.textContent = task.text;
@@ -66,31 +80,33 @@ function createTaskElement(task, index) {
         title.style.opacity = "0.7";
     }
 
+    // Priority Badge
+    if(task.priority){
+        const priorityTag = document.createElement("div");
+        priorityTag.className = "priority " + task.priority;
+        priorityTag.textContent = task.priority.toUpperCase();
+        leftDiv.appendChild(priorityTag);
+    }
+
+    // Deadline
     const deadline = document.createElement("div");
     deadline.className = "deadline";
 
     const now = new Date();
     const deadlineDate = new Date(`${task.date}T${task.time}`);
-
     const diffHours = (deadlineDate - now) / (1000 * 60 * 60);
 
-    if (diffHours > 24) {
-        deadline.classList.add("green");
-    } 
-    else if (diffHours > 0) {
-        deadline.classList.add("yellow");
-    } 
-    else {
-        deadline.classList.add("red");
-    }
+    if (diffHours > 24) deadline.classList.add("green");
+    else if (diffHours > 0) deadline.classList.add("yellow");
+    else deadline.classList.add("red");
 
     const formattedDate = new Date(`${task.date}T${task.time}`)
-    .toLocaleString("en-US", {
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit"
-    });
+        .toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+        });
 
     deadline.textContent = `Due: ${formattedDate}`;
 
@@ -128,9 +144,7 @@ function createTaskElement(task, index) {
                 return;
             }
 
-            const now = new Date();
-
-            if (newDeadline < now) {
+            if (newDeadline < new Date()) {
                 alert("Deadline cannot be in the past.");
                 return;
             }
@@ -207,7 +221,10 @@ function renderTasks() {
     activeTasks.innerHTML = "";
     completedTasks.innerHTML = "";
 
-    // Sort tasks by deadline
+    const search = searchInput ? searchInput.value.toLowerCase() : "";
+    const filter = filterSelect ? filterSelect.value : "all";
+
+    // Sort by deadline
     tasks.sort((a, b) => {
         const dateA = new Date(`${a.date}T${a.time}`);
         const dateB = new Date(`${b.date}T${b.time}`);
@@ -216,17 +233,29 @@ function renderTasks() {
 
     tasks.forEach((task, index) => {
 
+        if(search && !task.text.toLowerCase().includes(search)) return;
+
+        if(filter === "priority-high" && task.priority !== "high") return;
+        if(filter === "priority-medium" && task.priority !== "medium") return;
+        if(filter === "priority-low" && task.priority !== "low") return;
+
+        if(filter === "deadline-soon"){
+            const now = new Date();
+            const deadline = new Date(`${task.date}T${task.time}`);
+            const diffHours = (deadline - now) / (1000*60*60);
+            if(diffHours > 24) return;
+        }
+
         const element = createTaskElement(task, index);
 
-        if (task.completed) {
-            completedTasks.appendChild(element);
-        } 
-        else {
-            activeTasks.appendChild(element);
-        }
+        if (task.completed) completedTasks.appendChild(element);
+        else activeTasks.appendChild(element);
 
     });
 
+    // Update statistics
+    if(activeCount) activeCount.textContent = tasks.filter(t => !t.completed).length;
+    if(completedCount) completedCount.textContent = tasks.filter(t => t.completed).length;
 }
 
 
@@ -237,24 +266,25 @@ addTaskBtn.onclick = () => {
     const text = taskInput.value.trim();
     const date = dateInput.value;
     const time = timeInput.value;
+    const priority = priorityInput ? priorityInput.value : "low";
 
     if (!text || !date || !time) {
         alert("Please fill all fields");
         return;
     }
 
-    const now = new Date();
     const deadline = new Date(`${date}T${time}`);
 
-    if (deadline < now) {
+    if (deadline < new Date()) {
         alert("Deadline cannot be in the past.");
         return;
     }
 
     tasks.push({
-        text: text,
-        date: date,
-        time: time,
+        text,
+        date,
+        time,
+        priority,
         completed: false
     });
 
@@ -264,7 +294,19 @@ addTaskBtn.onclick = () => {
     taskInput.value = "";
     dateInput.value = "";
     timeInput.value = "";
+    if(priorityInput) priorityInput.value = "low";
 };
+
+
+// ================= SEARCH / FILTER =================
+
+if(searchInput){
+    searchInput.addEventListener("input", renderTasks);
+}
+
+if(filterSelect){
+    filterSelect.addEventListener("change", renderTasks);
+}
 
 
 // ================= INITIAL LOAD =================
