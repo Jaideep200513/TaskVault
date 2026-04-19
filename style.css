@@ -1,0 +1,404 @@
+/* ============================================================
+   TaskVault - Simple CSS
+   ============================================================ */
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── CSS Variables — Light (default) ──────────────────────── */
+:root {
+  --bg:           #F1EEDC;   
+  --bg-card:      #ffffff;   
+  --bg-surface:   #E5DDC5;   
+  --accent:       #B3C8CF;   
+  --accent-hover: #9ab4bc;   
+  --text:         #3a3228;   
+  --text-muted:   #7a6f5e;   
+  --border:       #d8d0bb;   
+  --danger:       #b07060;   
+  --danger-hover: #8f5848;
+  --shadow:       rgba(100, 88, 60, 0.10);
+}
+
+/* ── CSS Variables — Dark ─────────────────────────────────── */
+body.dark {
+  --bg:           #222831;  
+  --bg-card:      #393E46;   
+  --bg-surface:   #2e333b;   
+  --accent:       #DFD0B8;  
+  --accent-hover: #cfc0a4;   
+  --text:         #DFD0B8;   
+  --text-muted:   #948979;   
+  --border:       #4a5060;   
+  --danger:       #948979;   
+  --danger-hover: #7a6f5e;
+  --shadow:       rgba(0, 0, 0, 0.30);
+}
+
+/* ── Body ─────────────────────────────────────────────────── */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
+}
+
+/* ── Login Page ───────────────────────────────────────────── */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg);
+}
+
+.card {
+  background: var(--bg-card);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.card h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+/* In dark mode, accent on titles is the sand tone */
+body.dark .card h1 {
+  color: #DFD0B8;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+/* Theme toggle button inside login card */
+.theme-inside {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text);
+  transition: background 0.2s;
+}
+
+.theme-inside:hover {
+  background: var(--border);
+}
+
+/* ── Form Inputs ──────────────────────────────────────────── */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+select {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-card);
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s, background 0.3s;
+}
+
+body.dark input,
+body.dark select {
+  background-color: var(--bg-surface);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+/* ── Primary Buttons ──────────────────────────────────────── */
+button[type="submit"],
+#addTaskBtn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background-color: var(--accent);
+  color: var(--bg);        /* use bg color as text so contrast works in both modes */
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Inter", sans-serif;
+}
+
+button[type="submit"]:hover,
+#addTaskBtn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* In dark mode text on button should be the dark bg */
+body.dark button[type="submit"],
+body.dark #addTaskBtn {
+  color: #222831;
+}
+
+/* ── Dashboard Layout ─────────────────────────────────────── */
+.dashboard-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboard-header h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+body.dark .dashboard-header h2 {
+  color: #DFD0B8;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  transition: background 0.2s;
+}
+
+.theme-btn:hover {
+  background: var(--border);
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--danger);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: var(--danger-hover);
+}
+
+/* ── Stats ────────────────────────────────────────────────── */
+.task-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-box {
+  flex: 1;
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.stat-box span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+body.dark .stat-box span {
+  color: #DFD0B8;
+}
+
+.stat-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Search & Filter ──────────────────────────────────────── */
+.search-task-section {
+  margin-bottom: 16px;
+}
+
+.search-filter-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.search-filter-wrapper input {
+  flex: 1;
+  margin: 0;
+}
+
+.search-filter-wrapper select {
+  width: auto;
+  margin: 0;
+}
+
+/* ── Add Task Section ─────────────────────────────────────── */
+.add-task-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+  background: var(--bg-card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.add-task-section input,
+.add-task-section select {
+  margin: 0;
+  flex: 1;
+  min-width: 130px;
+}
+
+.add-task-section #taskInput {
+  flex: 2;
+}
+
+.add-task-section #addTaskBtn {
+  width: auto;
+  margin: 0;
+  flex: 1;
+  min-width: 100px;
+}
+
+/* ── Tasks Section ────────────────────────────────────────── */
+.tasks-section {
+  margin-bottom: 28px;
+}
+
+.tasks-section h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Individual Task Card ─────────────────────────────────── */
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 6px var(--shadow);
+  transition: background 0.3s, border 0.3s;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Strike-through for completed tasks */
+.task-title.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Done / Undo button */
+.task-actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: "Inter", sans-serif;
+  background-color: var(--accent);
+  color: var(--bg);
+  transition: background 0.2s;
+}
+
+body.dark .task-actions button {
+  color: #222831;
+}
+
+.task-actions button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Delete button */
+.task-actions .delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+.task-actions .delete-btn:hover {
+  background-color: var(--danger-hover);
+}
+
+/* ── No Tasks Message ─────────────────────────────────────── */
+.no-tasks {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 12px 0;
+}
